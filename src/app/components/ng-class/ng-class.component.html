@@ -1,0 +1,73 @@
+<div class="row">
+    <div [ngClass]="isSidePanelVisible ? 'col-8':'col-12'">
+        <div class="card">
+            <div class="card-header bg-success">
+                <div class="row">
+                    <div class="col-6">
+                        Studetn List
+                    </div>
+                    <div class="col-6 text-end">
+                        <button class="btn btn-primary" (click)="isSidePanelVisible = true">Add</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-3">
+                        <div class="p-3" [ngClass]="div1ClassName">
+                            DIv 1 - {{div1ClassName}}
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="p-3" [ngClass]="div2ClassName">
+                            DIv 2
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="p-3" [ngClass]="student1Name == student2Name ? 'bg-success text-white': 'bg-danger'"  >
+                            DIv 3
+                        </div>
+                    </div>
+                    <div class="col-3">
+                        <div class="p-3"  [ngClass]="isDivRed == true ? 'bg-danger' : 'bg-success'">
+                            DIv 4
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="row">
+                    <div class="col-3">
+                         <button class="btn btn-primary " (click)="addPrimary()">Add Primary Class</button>
+                         <button class="btn btn-danger" (click)="addDanger()"> Add Danger Class</button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-primary " (click)="toggleDIv4Class()">Toggle Class</button>
+                        
+                   </div>
+                   <div class="col-3">
+                        <input type="text" [(ngModel)]="student1Name" />
+                        <input type="text" [(ngModel)]="student2Name" />
+                   </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4" *ngIf="isSidePanelVisible == true">
+        <div class="card">
+            <div class="card-header bg-success">
+                <div class="row">
+                    <div class="col-6">
+                        Add Student
+                    </div>
+                    <div class="col-6 text-end">
+                        <button class="btn btn-primary" (click)="isSidePanelVisible = false">Close</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                Studetn Form
+            </div>
+        </div>
+    </div>
+</div>
+

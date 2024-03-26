@@ -1,0 +1,62 @@
+<div class="row">
+    <div class="col-4">
+        <ul>
+            <li *ngFor="let item of stateList"> {{item}}</li>
+        </ul>
+    </div> 
+    <div class="col-4">
+        <button class="btn btn-primary" 
+        *ngFor="let state of stateList"> {{state}}</button>
+    </div>
+    <div class="col-4">
+        <select class="form-select" >
+            <option
+             *ngFor="let state of stateList"
+             [value]="state"> 
+             {{state}}
+            </option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-4">
+        <ul>
+            <li *ngFor="let student of studentList">
+                 {{student.name}} - {{student.state}}</li>
+        </ul>
+    </div>
+    <div class="col-4">
+         <div *ngFor="let stud of studentList">
+             {{stud.studId}}</div>
+    </div>
+    <div class="col-4">
+        <select class="form-select">
+            <option *ngFor="let stud of studentList" [value]="stud.studId">{{stud.name}}</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+    <div class="col-6">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Sr No</th>
+                    <th>Name</th>
+                    <th>State</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let stud of studentList;let sr = index">
+                    <td> {{sr+1}}</td>
+                    <td > {{stud.name}}</td>
+                    <td  [ngClass]="stud.isPresent ? 'bg-success': 'bg-danger'"> {{stud.state}}</td>
+                    <td>
+                        <span *ngIf="stud.isPresent == true" class="text-success">Present</span>
+                        <span *ngIf="stud.isPresent == false" class="text-danger">Absent</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
