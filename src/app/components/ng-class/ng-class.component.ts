@@ -24,4 +24,7 @@ export class NgClassComponent {
   toggleDIv4Class() {
     this.isDivRed = !this.isDivRed;
   }
+  getClassName() {
+    return 'bg-warning';
+  }
 }

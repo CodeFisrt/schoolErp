@@ -16,6 +16,7 @@ import { NgForAdvComponent } from './components/ng-for-adv/ng-for-adv.component'
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgClassComponent } from './components/ng-class/ng-class.component';
 import { NgFor2Component } from './components/ng-for2/ng-for2.component';
+import { NgStyleComponent } from './components/ng-style/ng-style.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { NgFor2Component } from './components/ng-for2/ng-for2.component';
     NgIFAdvComponent,
     NgForAdvComponent,
     NgClassComponent,
-    NgFor2Component
+    NgFor2Component,
+    NgStyleComponent
   ],
   imports: [
     BrowserModule,

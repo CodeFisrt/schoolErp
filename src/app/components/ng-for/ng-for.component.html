@@ -44,6 +44,8 @@
                     <th>Name</th>
                     <th>State</th>
                     <th>Status</th>
+                    <th>Status</th>
+                    <th>Grade</th>
                 </tr>
             </thead>
             <tbody>
@@ -54,6 +56,12 @@
                     <td>
                         <span *ngIf="stud.isPresent == true" class="text-success">Present</span>
                         <span *ngIf="stud.isPresent == false" class="text-danger">Absent</span>
+                    </td>
+                    <td [ngClass]="getPresentClassName(stud.isPresent)"> 
+                        <span> {{stud.isPresent}}</span>
+                    </td>
+                    <td [ngClass]="{'bg-success': stud.grade == 'A' , 'bg-secondary': stud.grade == 'B', 'bg-danger':stud.grade == 'C' }">
+                        {{stud.grade}}
                     </td>
                 </tr>
             </tbody>
