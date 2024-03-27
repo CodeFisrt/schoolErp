@@ -4,6 +4,9 @@
             <li *ngFor="let state of stateList">  {{state}}</li>
         </ul>
     </div>
+    <div ngNonBindable>
+        {{ stateName}} <!-- Angular expressions won't be evaluated -->
+      </div>
     <div class="col-3">
         <select class="form-select">
             <option *ngFor="let stateName of stateList"> {{stateName}}</option>

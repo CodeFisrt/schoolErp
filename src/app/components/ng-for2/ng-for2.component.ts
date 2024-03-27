@@ -7,7 +7,7 @@ import { Component } from '@angular/core';
 })
 export class NgFor2Component {
 
-  stateName: string = '';
+  stateName: string = 'MAH';
   stateList: string [] = ['Maharashtra','Punjab','Goa','Delhi']
 
   isTableVisiable: boolean = false;
