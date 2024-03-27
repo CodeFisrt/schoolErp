@@ -15,6 +15,7 @@ import { NgIFAdvComponent } from './components/ng-ifadv/ng-ifadv.component';
 import { NgForAdvComponent } from './components/ng-for-adv/ng-for-adv.component';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgClassComponent } from './components/ng-class/ng-class.component';
+import { NgFor2Component } from './components/ng-for2/ng-for2.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { NgClassComponent } from './components/ng-class/ng-class.component';
     NgForComponent,
     NgIFAdvComponent,
     NgForAdvComponent,
-    NgClassComponent
+    NgClassComponent,
+    NgFor2Component
   ],
   imports: [
     BrowserModule,

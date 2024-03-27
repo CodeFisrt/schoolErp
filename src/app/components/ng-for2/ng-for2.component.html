@@ -1,0 +1,50 @@
+<div class="row">
+    <div class="col-3">
+        <ul>
+            <li *ngFor="let state of stateList">  {{state}}</li>
+        </ul>
+    </div>
+    <div class="col-3">
+        <select class="form-select">
+            <option *ngFor="let stateName of stateList"> {{stateName}}</option>
+        </select>
+    </div>
+    <div class="col-3">
+        <input type="text" [(ngModel)]="stateName"  placeholder="State NAme"/>
+        <button class="btn btn-sm btn-primary" (click)="addState()">Add State</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-3">
+        <ul>
+            <li *ngFor="let stud of studentList"> {{stud.studId}} - {{stud.name}}</li>
+        </ul>
+    </div>
+    <div class="col-5">
+        isTableVisiable=> {{isTableVisiable}}
+        <button class="btn btn-success" (click)="showTable()">Show  Table</button>
+        <button class="btn btn-danger"  (click)="hideTable()">Hide  Table</button>
+        <table class="table table-bordered" *ngIf="isTableVisiable"> 
+            <thead>
+                <tr>
+                    <th>Sr No</th>
+                    <th>Name</th>
+                    <th>State</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let student of studentList; let srNo = index">
+                    <td>{{srNo +1}}</td>
+                    <td>{{student.name}}</td>
+                    <td>{{student.state}}</td>
+                    <td>
+                         
+                        <span class="text-success" *ngIf="student.isPresent == true"> Student is Present</span>
+                        <span class="text-danger" *ngIf="student.isPresent == false">  Student is Absent</span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
