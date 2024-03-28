@@ -17,6 +17,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { NgClassComponent } from './components/ng-class/ng-class.component';
 import { NgFor2Component } from './components/ng-for2/ng-for2.component';
 import { NgStyleComponent } from './components/ng-style/ng-style.component';
+import { NgStyel2Component } from './components/ng-styel2/ng-styel2.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { NgStyleComponent } from './components/ng-style/ng-style.component';
     NgForAdvComponent,
     NgClassComponent,
     NgFor2Component,
-    NgStyleComponent
+    NgStyleComponent,
+    NgStyel2Component
   ],
   imports: [
     BrowserModule,

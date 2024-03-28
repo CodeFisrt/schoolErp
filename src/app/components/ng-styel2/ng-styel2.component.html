@@ -1,0 +1,34 @@
+<div class="row">
+    <div class="col-3">
+       <p [ngStyle]="{'color':textColor}">Demo 1</p>
+       <p [ngStyle]="{'font-size':fontSize,'background-color':backColor}">Demo 22</p>
+    </div>
+    <div class="col-3" [ngStyle]="customeCss">
+            Div 1
+    </div>
+    <div class="col-3">
+        <input type="text" [(ngModel)]="textColor"/>
+    </div>
+</div>
+<div class="row">
+    <div class="col-2">
+        <button class="btn btn-primary" (click)="showMobile()">Mobile</button>
+    </div>
+    <div class="col-2">
+        <button class="btn btn-primary" (click)="showlaptop()">Laptop</button>
+    </div>
+    <div class="col-2">
+        <button class="btn btn-primary" (click)="showcamera()">Camera</button>
+    </div>
+</div>
+<div class="row">
+    <div class="col-12" *ngIf="showMobileDiv">
+        <p>mpobile => Samsumg, Sony, Motorola, Micromax</p>
+    </div>
+    <div class="col-12" *ngIf="showLaptopnDiv">
+        <p>Laptop => Sony, Lenovo, Hp, Ace</p>
+    </div>
+    <div class="col-12" *ngIf="showCameraDiv">
+        <p>camera => Sony, Philips</p>
+    </div>
+</div>
