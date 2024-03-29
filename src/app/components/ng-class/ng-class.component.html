@@ -14,6 +14,14 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-3">
+                        <button routerLink="/variable" class="btn btn-primary">Navigate to Variabe</button>
+                    </div>
+                    <div class="col-3">
+                        <button class="btn btn-primary" (click)="navigatetovariable()">Navigate By Function</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
                         <div class="p-3" [ngClass]="div1ClassName">
                             DIv 1 - {{div1ClassName}}
                         </div>

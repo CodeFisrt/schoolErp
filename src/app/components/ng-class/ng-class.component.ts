@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-ng-class',
@@ -14,6 +15,13 @@ export class NgClassComponent {
 
   isSidePanelVisible: boolean = false;
   isDivRed: boolean = true;
+
+  constructor(private router:Router) {
+
+  }
+  navigatetovariable() {
+    this.router.navigateByUrl('/variable')
+  }
 
   addPrimary() {
     this.div1ClassName = 'bg-primary'

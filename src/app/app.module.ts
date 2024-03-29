@@ -18,6 +18,7 @@ import { NgClassComponent } from './components/ng-class/ng-class.component';
 import { NgFor2Component } from './components/ng-for2/ng-for2.component';
 import { NgStyleComponent } from './components/ng-style/ng-style.component';
 import { NgStyel2Component } from './components/ng-styel2/ng-styel2.component';
+import { NoRouteFoundComponent } from './components/no-route-found/no-route-found.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { NgStyel2Component } from './components/ng-styel2/ng-styel2.component';
     NgClassComponent,
     NgFor2Component,
     NgStyleComponent,
-    NgStyel2Component
+    NgStyel2Component,
+    NoRouteFoundComponent
   ],
   imports: [
     BrowserModule,

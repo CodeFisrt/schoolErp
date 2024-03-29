@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-variables',
@@ -21,7 +22,7 @@ export class VariablesComponent {
 
   student : any = "Rupesh";
 
-  constructor() {
+  constructor(private router: Router) {
     debugger;
     console.log(this.firstName)
     this.firstName  = "Shyam";
@@ -30,6 +31,10 @@ export class VariablesComponent {
     this.student = 123;
     this.student = false; 
   } 
+
+  naviagteToAddUser(id: number) {
+    this.router.navigate(['addUser',id])
+  }
 
 }
  

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router, RouterEvent } from '@angular/router';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +8,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'schoolErp';
+
+  constructor(private router: Router){
+    this.router.events.subscribe( event =>{
+      debugger;
+      console.log(event?.type)
+    })  
+  }
 }

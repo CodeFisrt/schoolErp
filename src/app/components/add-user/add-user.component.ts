@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-add-user',
@@ -17,11 +18,16 @@ export class AddUserComponent {
 
 
   //3rd ways declaration
-  courseDuration: string; 
+  courseDuration: string;
+  userId: number = 0;
 
-  constructor() {
+  constructor(private activatedRoute: ActivatedRoute) {
     console.log(" AddUserComponent Constructor")
     this.courseDuration = "2 months";
+    this.activatedRoute.params.subscribe((paramObj:any)=> {
+      debugger;
+      this.userId = paramObj.id;
+    })
   }
 
   printName() {
