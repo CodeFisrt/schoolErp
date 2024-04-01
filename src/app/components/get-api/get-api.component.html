@@ -1,0 +1,93 @@
+<div class="row">
+    <div class="col-8">
+        <div class="card">
+            <div class="card-header bg-success">
+                List
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Sr No</th>
+                                    <th>Name</th> 
+                                    <th>Password</th>
+                                    <th>Comtact No</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <ng-container *ngIf="isLoader == true">
+                                    <tr>
+                                        <td colspan="5">
+                                            <div class="spinner-border text-muted"></div>
+                                            <div class="spinner-border text-primary"></div>
+                                            <div class="spinner-border text-success"></div>
+                                            <div class="spinner-border text-info"></div>
+                                            <div class="spinner-border text-warning"></div>
+                                            <div class="spinner-border text-danger"></div>
+                                            <div class="spinner-border text-secondary"></div>
+                                            <div class="spinner-border text-dark"></div>
+                                            <div class="spinner-border text-light"></div>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+                                <ng-container *ngIf="isLoader == false">
+                                    <tr *ngFor="let user of userList;let sr = index">
+                                        <td> {{sr+1}}</td>
+                                        <td> {{user.name}}</td> 
+                                        <td> {{user.password}}</td>
+                                        <td> {{user.contactNo}}</td> 
+                                        <td>
+                                            <button class="btn btn-danger" (click)="onDelete(user.userId)">Delete</button>
+                                        </td>
+                                    </tr>
+                                </ng-container>
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-4">
+        <div class="card">
+            <div class="card-header bg-success">
+                Create New
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-6">
+                        <label>Name</label>
+                        <input type="text" [(ngModel)]="userObj.name" class="form-control" />
+                    </div>
+                    <div class="col-6">
+                        <label>Email</label>
+                        <input type="text" [(ngModel)]="userObj.email" class="form-control" />
+                    </div>
+                    <div class="col-6">
+                        <label>Password</label>
+                        <input type="text"  [(ngModel)]="userObj.password"class="form-control" />
+                    </div>
+                    <div class="col-6">
+                        <label>Contact No</label>
+                        <input type="text" [(ngModel)]="userObj.contactNo" class="form-control" />
+                    </div>
+                    <div class="col-6">
+                        <label>Role</label>
+                        <input type="text" [(ngModel)]="userObj.role" class="form-control" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <button class="btn btn-primary" (click)="onSaveUser()">
+                            <span *ngIf="isSaveApiCallInProgress" class="spinner-border spinner-border-sm"></span>
+                            Save User</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

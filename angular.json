@@ -70,7 +70,8 @@
               "buildTarget": "schoolErp:build:production"
             },
             "development": {
-              "buildTarget": "schoolErp:build:development"
+              "buildTarget": "schoolErp:build:development",
+              "port": 4203
             }
           },
           "defaultConfiguration": "development"

@@ -10,8 +10,7 @@ export class AppComponent {
   title = 'schoolErp';
 
   constructor(private router: Router){
-    this.router.events.subscribe( event =>{
-      debugger;
+    this.router.events.subscribe( event =>{ 
       console.log(event?.type)
     })  
   }

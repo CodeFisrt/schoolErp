@@ -24,6 +24,7 @@ export class AddUserComponent {
   constructor(private activatedRoute: ActivatedRoute) {
     console.log(" AddUserComponent Constructor")
     this.courseDuration = "2 months";
+    const rouetData = this.activatedRoute.data;
     this.activatedRoute.params.subscribe((paramObj:any)=> {
       debugger;
       this.userId = paramObj.id;
