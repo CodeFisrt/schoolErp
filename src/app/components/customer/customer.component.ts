@@ -6,6 +6,5 @@ import { Component } from '@angular/core';
   styleUrl: './customer.component.css'
 })
 export class CustomerComponent {
-
   customreName: string = "Chetan Jogi";
 }

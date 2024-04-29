@@ -1,14 +1,19 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit , OnDestroy, ViewEncapsulation} from '@angular/core';
+import { Observable, Subscription, map } from 'rxjs';
+import { UserService } from '../../core/service/user.service';
 
 @Component({
   selector: 'app-get-api',
   templateUrl: './get-api.component.html',
-  styleUrl: './get-api.component.css'
+  styleUrl: './get-api.component.css',
+  encapsulation: ViewEncapsulation.None
 })
-export class GetAPIComponent implements OnInit {
+export class GetAPIComponent implements OnInit,OnDestroy {
 
 
+  message: string = 'This iS egt API'
+  fullName= "asdasd";
   userList: any [] = [];
   userObj: any = {
     "userId": 0,
@@ -23,25 +28,42 @@ export class GetAPIComponent implements OnInit {
   isLoader: boolean = true;
   isSaveApiCallInProgress: boolean = false;
 
-  constructor(private http: HttpClient) {
+  user$ : Observable<any> ;
 
+  mySub: Subscription [] = []
+
+  constructor(private http: HttpClient,private userService: UserService) {
+    this.user$ = this.http.get<any>("https://freeapi.gerasim.in/api/EventBooking/GetAllUsers").pipe(
+      map(item=>{
+        debugger;
+        return item.data;
+      })
+    );
   }
 
   ngOnInit(): void {
-     this.getAllUser();
+
+    const citsyList = ['Pune','Mumabi','nagput'];
+    debugger;
+    const sum =  this.userService.getSum(1,2,3,5);
   }
 
-  getAllUser() {
-    this.http.get("https://freeapi.gerasim.in/api/EventBooking/GetAllUsers").subscribe((res:any)=>{
+  getAllUser(): void {
+    this.mySub.push(this.userService.getAllUsers().subscribe((res:any)=>{
       this.userList = res.data;
-      this.isLoader = false
-    })
+       this.isLoader = false
+  }))
+    
+    // this.http.get("https://freeapi.gerasim.in/api/EventBooking/GetAllUsers").subscribe((res:any)=>{
+    //   this.userList = res.data;
+    //   this.isLoader = false
+    // })
   }
   onSaveUser() {
     debugger;
     if(this.isSaveApiCallInProgress == false) {
       this.isSaveApiCallInProgress =  true;
-      this.http.post("https://freeapi.gerasim.in/api/EventBooking/createuser",this.userObj).subscribe((res:any)=>{
+   const result=   this.userService.createNewUser(this.userObj).subscribe((res:any)=>{
         if(res.result) {
           alert("User Created Success");
           this.getAllUser();
@@ -50,6 +72,7 @@ export class GetAPIComponent implements OnInit {
         }
         this.isSaveApiCallInProgress = false;
       })
+      this.mySub.push(result)
     } 
   }
 
@@ -71,23 +94,42 @@ export class GetAPIComponent implements OnInit {
    
   }
 
-  // getAllUsers() {
-  //   this.http.get("https://jsonplaceholder.typicode.com/users").subscribe((res:any)=>{
-  //     this.userList =  res;
-  //   })
+  // onEdit(user: any) { 
+  //   const newStrObj =  JSON.stringify(user);
+
+  //   this.userObj = JSON.parse(newStrObj);
   // }
-  // getAllQuestions() {
-  //   this.http.get("https://freeapi.gerasim.in/api/Interview/GetAllQuestions").toPromise().then(
-  //     res => { // Success
-  //       debugger;
-        
-  //     }
-  //   )
-  // }
-  // getAllUser2() {
-  //   fetch("https://jsonplaceholder.typicode.com/users").then(response => response.json()).then(res=>{
-  //     debugger;
-  //   })
-  // }
+
+
+  onEdit(userId:any) {
+    debugger;
+    this.http.get("https://freeapi.gerasim.in/api/EventBooking/GetUserById?id="+ userId).subscribe((res:any)=>{
+      this.userObj = res.data;
+    })
+  }
+  getDate(message: string) {
+    debugger;
+  }
+  onUpdate() {
+    if(this.isSaveApiCallInProgress == false) {
+      this.isSaveApiCallInProgress =  true;
+      this.http.post("https://freeapi.gerasim.in/api/EventBooking/UpdateUser", this.userObj).subscribe((res:any)=>{
+        if(res.result) {
+          alert("User Updated Success");
+          this.getAllUser();
+        } else {
+          alert(res.message)
+        }
+        this.isSaveApiCallInProgress = false;
+      })
+    } 
+  }
+
+  ngOnDestroy(): void {
+    this.mySub.forEach((sub)=>{
+      sub.unsubscribe();
+    })
+  }
+   
 
 }

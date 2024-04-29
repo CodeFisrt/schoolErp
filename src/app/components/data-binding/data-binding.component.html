@@ -1,12 +1,19 @@
+<app-alert [alertType]="'Success'" [alertMessage]="'Welcome To Data-Binding Page'"></app-alert>
+
+<h1 class="primary">Hellow Green</h1>
 <div class="row">
     <div class="col-3">
-        <p> {{ firstName}} </p>
+        <!-- <p> {{ firstName}} </p> -->
     </div>
     <div class="col-3">
          <small> {{currentDate}}</small>
     </div>
+ 
+    <app-customer>
+
+    </app-customer>
     <div class="col-3">
-        <input type="text" [value]="firstName" placeholder="Ennter Name" />
+        <!-- <input type="text" [value]="firstName" placeholder="Ennter Name" /> -->
         <button class="btn btn-primary" (click)="changeFirstNAme()">Chanage FirstName</button>
     </div>
     <div class="col-3">

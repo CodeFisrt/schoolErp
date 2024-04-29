@@ -1,12 +1,18 @@
+<ng-template #sddfsdf>
+    <p>This Is PAra</p>
+</ng-template>
+<app-alert [alertType]="'Error'" [alertMessage]="message"></app-alert>
+<h1 class="primary">Hellow Red</h1>
+
 <div class="row">
     <div class="col-8">
         <div class="card">
             <div class="card-header bg-success">
-                List
+                List <app-my-button (onBtnClick)="getDate($event)" [btnText]="'Get Data'" [btnClassName]="'btn-success'"></app-my-button>
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-6">
+                    <div class="col-12">
                         <table class="table table-bordered">
                             <thead>
                                 <tr>
@@ -18,7 +24,7 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <ng-container *ngIf="isLoader == true">
+                                <!-- <ng-container *ngIf="isLoader == true">
                                     <tr>
                                         <td colspan="5">
                                             <div class="spinner-border text-muted"></div>
@@ -32,18 +38,24 @@
                                             <div class="spinner-border text-light"></div>
                                         </td>
                                     </tr>
-                                </ng-container>
-                                <ng-container *ngIf="isLoader == false">
-                                    <tr *ngFor="let user of userList;let sr = index">
-                                        <td> {{sr+1}}</td>
-                                        <td> {{user.name}}</td> 
-                                        <td> {{user.password}}</td>
-                                        <td> {{user.contactNo}}</td> 
-                                        <td>
-                                            <button class="btn btn-danger" (click)="onDelete(user.userId)">Delete</button>
-                                        </td>
-                                    </tr>
-                                </ng-container>
+                                </ng-container> -->
+                                <ng-container >
+                                    <!-- <ng-container *ngIf="user$ |async as users"> -->
+                                        <tr *ngFor="let user of user$ | async;let sr = index">
+                                            <td> {{sr+1}}</td>
+                                            <td> {{user.name}}</td> 
+                                            <td> {{user.password}}</td>
+                                            <td> {{user.contactNo}}</td> 
+                                            <td>
+                                                <!-- <button class="btn btn-danger" (click)="onEdit(user)">Edit</button> -->
+                                                <!-- <button class="btn btn-success" (click)="onEdit(user.userId)">Edit</button> -->
+                                                <app-my-button (onBtnClick)="onEdit(user)" [btnText]="'Edit User'" [btnClassName]="'btn-primary'"></app-my-button>
+                                                <button class="btn btn-danger" (click)="onDelete(user.userId)">Delete</button>
+                                            </td>
+                                        </tr>
+                                    </ng-container>
+                                   
+                                <!-- </ng-container> -->
 
                             </tbody>
                         </table>
@@ -80,11 +92,15 @@
                         <input type="text" [(ngModel)]="userObj.role" class="form-control" />
                     </div>
                 </div>
+                {{userObj | json}}
                 <div class="row">
                     <div class="col-12">
-                        <button class="btn btn-primary" (click)="onSaveUser()">
+                        <button *ngIf="userObj.userId == 0" class="btn btn-primary" (click)="onSaveUser()">
                             <span *ngIf="isSaveApiCallInProgress" class="spinner-border spinner-border-sm"></span>
                             Save User</button>
+                        <button *ngIf="userObj.userId !== 0" class="btn btn-success" (click)="onUpdate()">
+                            <span *ngIf="isSaveApiCallInProgress" class="spinner-border spinner-border-sm"></span>
+                            Update User</button>
                     </div>
                 </div>
             </div>

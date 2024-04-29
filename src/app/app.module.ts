@@ -20,7 +20,11 @@ import { NgStyleComponent } from './components/ng-style/ng-style.component';
 import { NgStyel2Component } from './components/ng-styel2/ng-styel2.component';
 import { NoRouteFoundComponent } from './components/no-route-found/no-route-found.component';
 import { GetAPIComponent } from './components/get-api/get-api.component';
-
+import { AlertComponent } from './widget/alert/alert.component';
+import { MyButtonComponent } from './widget/my-button/my-button.component';
+import { provideState, provideStore } from '@ngrx/store';
+import { counterReducer } from './state/counter.reducer';
+import { CounterComponent } from './components/counter/counter.component'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -38,15 +42,23 @@ import { GetAPIComponent } from './components/get-api/get-api.component';
     NgStyleComponent,
     NgStyel2Component,
     NoRouteFoundComponent,
-    GetAPIComponent
+    GetAPIComponent,
+    AlertComponent,
+    MyButtonComponent,
+    CounterComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule, 
   ],
-  providers: [],
+  providers: [  provideStore(),
+    provideState({ name: 'counter', reducer: counterReducer })],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+function provideEffects(ProductEffect: any): any[] | import("@angular/core").Type<any> | import("@angular/core").ModuleWithProviders<{}> {
+  throw new Error('Function not implemented.');
+}
+

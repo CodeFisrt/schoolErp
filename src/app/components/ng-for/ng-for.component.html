@@ -1,7 +1,10 @@
 <div class="row">
     <div class="col-4">
         <ul>
-            <li *ngFor="let item of stateList"> {{item}}</li>
+            @for (item of stateList; track $index) {
+                <li > {{item}}</li>
+            }
+            
         </ul>
     </div> 
     <div class="col-4">
@@ -31,7 +34,9 @@
     </div>
     <div class="col-4">
         <select class="form-select">
-            <option *ngFor="let stud of studentList" [value]="stud.studId">{{stud.name}}</option>
+            @for (item of studentList; track item.studId) {
+                <option  [value]="item.studId">{{item.name}}</option>
+            }
         </select>
     </div>
 </div>
@@ -48,22 +53,50 @@
                     <th>Grade</th>
                 </tr>
             </thead>
-            <tbody>
-                <tr *ngFor="let stud of studentList;let sr = index">
-                    <td> {{sr+1}}</td>
-                    <td > {{stud.name}}</td>
-                    <td  [ngClass]="stud.isPresent ? 'bg-success': 'bg-danger'"> {{stud.state}}</td>
-                    <td>
-                        <span *ngIf="stud.isPresent == true" class="text-success">Present</span>
-                        <span *ngIf="stud.isPresent == false" class="text-danger">Absent</span>
-                    </td>
-                    <td [ngClass]="getPresentClassName(stud.isPresent)"> 
-                        <span> {{stud.isPresent}}</span>
-                    </td>
-                    <td [ngClass]="{'bg-success': stud.grade == 'A' , 'bg-secondary': stud.grade == 'B', 'bg-danger':stud.grade == 'C' }">
-                        {{stud.grade}}
-                    </td>
-                </tr>
+            <tbody> 
+                @for (stud of studentList; let sr= $index;let first = $first;track sr) {
+                    <tr>
+                        <td> {{sr+1}}</td>
+                        <td > {{stud.name}}</td>
+                        <td  [ngClass]="stud.isPresent ? 'bg-success': 'bg-danger'"> {{stud.state}}</td>
+                        <td>
+                            <!-- @if(stud.isPresent == true) {
+                                <span class="text-success">Present</span>
+                            } @else if(stud.isPresent == false) {
+                                <span  class="text-danger">Absent</span>
+                            } @else {
+                                <span  class="text-danger">No Record Available</span>
+                            } -->
+                            @switch (stud.isPresent) {
+                                @case (true) {
+                                    <span class="text-success">Present</span>
+                                }
+                                @case (false) {
+                                    <span  class="text-danger">Absent</span>
+                                }
+                                @case (null) {
+                                    <span  class="text-danger">No Record Available</span>
+                                }
+                                @default {
+                                    <span  class="text-danger">Some Error</span>
+                                }
+                            }
+                        </td>
+                        <td [ngClass]="getPresentClassName(stud.isPresent)"> 
+                            <span> {{stud.isPresent}}</span>
+                        </td>
+                        <td [ngClass]="{'bg-success': stud.grade == 'A' , 'bg-secondary': stud.grade == 'B', 'bg-danger':stud.grade == 'C' }">
+                            {{stud.grade}}
+                        </td>
+                    </tr>
+                }
+                @empty {
+                    <tr>
+                        <td colspan="6"> NO Record Found</td>
+                    </tr>
+
+                }   
+                
             </tbody>
         </table>
     </div>
