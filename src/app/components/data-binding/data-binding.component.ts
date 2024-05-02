@@ -9,6 +9,7 @@ import { Component, OnChanges,
   viewChild,
   ViewChild} from '@angular/core';
 import { AddUserComponent } from '../add-user/add-user.component';
+import { UserService } from '../../core/service/user.service';
 
 @Component({
   selector: 'app-data-binding',
@@ -24,8 +25,14 @@ export class DataBindingComponent implements OnChanges, OnInit,  DoCheck,  After
  
  @ViewChild(AddUserComponent) child!: AddUserComponent;
 
- constructor() {
+ constructor( private userServioce: UserService) {
   this.currentDate = new Date();
+  this.userServioce.modeChange$.subscribe((res:any)=>{
+    debugger;
+  })
+  this.userServioce.modeChangeBehaviour$.subscribe((res:any)=>{
+    debugger;
+  })
  }
  ngOnChanges() {  
   console.log(`ngOnChanges - data is `);  

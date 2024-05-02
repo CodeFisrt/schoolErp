@@ -9,6 +9,7 @@ import { DataBindingComponent } from './components/data-binding/data-binding.com
 import { NgForComponent } from './components/ng-for/ng-for.component';
 import { NgIfComponent } from './components/ng-if/ng-if.component';
 import { CounterComponent } from './components/counter/counter.component';
+import { UserComponent } from './components/user/user.component';
 
 const routes: Routes = [
   // Default Route
@@ -58,6 +59,11 @@ const routes: Routes = [
   {
     path:'get-API',
     component: GetAPIComponent,
+    title:'Ng-Class'
+  },
+  {
+    path:'user',
+    component: UserComponent,
     title:'Ng-Class'
   },
   // wild Card Route
