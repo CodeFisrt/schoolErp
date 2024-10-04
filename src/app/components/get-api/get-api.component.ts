@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Component, OnInit , OnDestroy, ViewEncapsulation} from '@angular/core';
+import { Component, OnInit , OnDestroy, ViewEncapsulation, HostListener} from '@angular/core';
 import { Observable, Subscription, map } from 'rxjs';
 import { UserService } from '../../core/service/user.service';
 
@@ -47,7 +47,10 @@ export class GetAPIComponent implements OnInit,OnDestroy {
     debugger;
     const sum =  this.userService.getSum(1,2,3,5);
   }
-
+  @HostListener('window:scroll', ['$event'])
+  onWindowScroll(event:any) {
+      console.log("scrolling...");
+  }
   getAllUser(): void {
     this.mySub.push(this.userService.getAllUsers().subscribe((res:any)=>{
       this.userList = res.data;

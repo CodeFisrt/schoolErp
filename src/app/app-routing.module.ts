@@ -10,6 +10,7 @@ import { NgForComponent } from './components/ng-for/ng-for.component';
 import { NgIfComponent } from './components/ng-if/ng-if.component';
 import { CounterComponent } from './components/counter/counter.component';
 import { UserComponent } from './components/user/user.component';
+import { CustomerComponent } from './components/customer/customer.component';
 
 const routes: Routes = [
   // Default Route
@@ -64,6 +65,11 @@ const routes: Routes = [
   {
     path:'user',
     component: UserComponent,
+    title:'Ng-Class'
+  },
+  {
+    path:'customer',
+    component: CustomerComponent,
     title:'Ng-Class'
   },
   // wild Card Route

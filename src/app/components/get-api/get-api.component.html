@@ -41,10 +41,12 @@
                                 </ng-container> -->
                                 <ng-container >
                                     <!-- <ng-container *ngIf="user$ |async as users"> -->
-                                        <tr *ngFor="let user of user$ | async;let sr = index">
+                                        <tr  *ngFor="let user of user$ | async;let sr = index">
                                             <td> {{sr+1}}</td>
-                                            <td> {{user.name}}</td> 
-                                            <td> {{user.password}}</td>
+                                            <td> 
+                                                <input type="text" [(ngModel)]="user.name">
+                                                 </td> 
+                                            <td appHighlightTr> {{user.password}}</td>
                                             <td> {{user.contactNo}}</td> 
                                             <td>
                                                 <!-- <button class="btn btn-danger" (click)="onEdit(user)">Edit</button> -->

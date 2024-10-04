@@ -1,33 +1,51 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { UserService } from '../../core/service/user.service';
+import { concatMap, debounceTime, distinctUntilChanged, forkJoin, mergeMap, switchMap } from 'rxjs';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-user',
   templateUrl: './user.component.html',
   styleUrl: './user.component.css'
 })
-export class UserComponent {
+export class UserComponent implements OnInit {
 
-  mode: string = '';
-  constructor(private userService: UserService) {
-    console.log(" UserComponent Constructor")
-    const mode =   userService.data.mode;
-    
-    this.getAllUsers(); 
-    this.getAllUsersDropDownList();
-    this.userService.userListRespos$.subscribe((res:any)=>{
-     
+  mode: string = ''; 
+  results: any []= [];
+
+  searchBox: FormControl = new FormControl("");
+
+
+  constructor(private userService: UserService) {  
+
+    this.searchBox.valueChanges.pipe(
+      debounceTime(100),
+      distinctUntilChanged(),
+      mergeMap(query=> this.userService.getSerachQuestion(query))
+    ).subscribe((res: any)=>{
+      console.log(res.data.length)
     })
-    this.userService.modeChange$.subscribe((res:string)=>{
+    //  this.searchBox.valueChanges.subscribe((res: any)=>{
+    //   debugger;
+    //   this.userService.getSerachQuestion(res).subscribe((result:any)=>{
+    //      debugger;
+    //     console.log(result.data.length)
+    //   })
+    //  })
+
+  }
+
+  ngOnInit(): void {
+    const allUser =  this.userService.getAllUsers();
+    const droddownUser = this.userService.getAllUsersDropDownList();
+
+    forkJoin([allUser,droddownUser]).subscribe((res:any)=>{
       debugger;
-      this.mode = res;
-    })
-    this.userService.modeChangeBehaviour$.subscribe((res:string)=>{
-      debugger;
-      this.mode = res;
     })
   }
 
+ 
+  
   getAllUsers() {
     this.userService.getAllUsers().subscribe((res:any)=>{
       

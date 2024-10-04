@@ -21,6 +21,11 @@ export class UserService {
 
   constructor(private http: HttpClient) { }
 
+
+  getSerachQuestion(searchText: string) {
+    return this.http.get("https://freeapi.gerasim.in/api/Interview/search?searchquery="+searchText)
+  }
+  
   getAllUsers() { 
     return this.http.get(`${this.apiUrl}GetAllUsers`).pipe(
       map((res: any) => res.data)

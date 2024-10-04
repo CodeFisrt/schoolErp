@@ -8,7 +8,7 @@ import { CustomerComponent } from './components/customer/customer.component';
 import { AddUserComponent } from './components/add-user/add-user.component';
 import { VariablesComponent } from './components/variables/variables.component';
 import { DataBindingComponent } from './components/data-binding/data-binding.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgIfComponent } from './components/ng-if/ng-if.component';
 import { NgForComponent } from './components/ng-for/ng-for.component';
 import { NgIFAdvComponent } from './components/ng-ifadv/ng-ifadv.component';
@@ -24,7 +24,8 @@ import { AlertComponent } from './widget/alert/alert.component';
 import { MyButtonComponent } from './widget/my-button/my-button.component';
 import { provideState, provideStore } from '@ngrx/store';
 import { counterReducer } from './state/counter.reducer';
-import { CounterComponent } from './components/counter/counter.component'; 
+import { CounterComponent } from './components/counter/counter.component';
+import { HighlightTrDirective } from './directive/highlight-tr.directive'; 
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,20 +46,20 @@ import { CounterComponent } from './components/counter/counter.component';
     GetAPIComponent,
     AlertComponent,
     MyButtonComponent,
-    CounterComponent
+    CounterComponent,
+    HighlightTrDirective
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule, 
+    ReactiveFormsModule
   ],
   providers: [  provideStore(),
     provideState({ name: 'counter', reducer: counterReducer })],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
-function provideEffects(ProductEffect: any): any[] | import("@angular/core").Type<any> | import("@angular/core").ModuleWithProviders<{}> {
-  throw new Error('Function not implemented.');
-}
+ 
 
